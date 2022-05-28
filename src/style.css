@@ -1,0 +1,47 @@
+
+/* nav */
+.App{
+    background-image:linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),
+        url("./img/paper.jpeg") ;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 100vw;
+        height: 100vh;
+         margin: 0px;
+    
+        border: 0px;
+        vertical-align: baseline;
+}
+
+header {
+  
+    width: 100%;
+    padding: 1rem;
+    color: black;
+    background: white;
+    border-bottom: 4px solid rgba(200, 200, 200, .5);
+    display: flex;
+    align-items: center;
+}
+
+header h1{
+    color: black;
+    font-family: "NanumSquareRoundExtraBold";
+    font-size: 25px;
+    margin: auto;
+}
+
+
+/* Main */
+
+/* .wrap{
+    display: grid;
+    height: 100%;
+        grid-template-columns: repeat(3, 130px);
+        grid-template-rows: repeat(2, 130px);
+        column-gap: 30px;
+        row-gap: 30px;
+} */
+
+
