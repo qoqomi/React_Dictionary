@@ -15,10 +15,6 @@ import { Container } from "react-bootstrap";
 const Main = (props) => {
   return (
     <div>
-      <header>
-        <h1>중국어 단어장</h1>
-      </header>
-
       <div className="card_Main">
         <article className="card_Box">
           <div className="card_Box_Btn">

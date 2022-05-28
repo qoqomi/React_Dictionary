@@ -1,16 +1,29 @@
 import React from "react";
+//새로운 창들
 import Main from "./Main";
+import Detail from "./Detail";
 import background from "./img/paper.jpeg";
-//font
+//css
 import "./App.css";
 import "./CardBox.css";
+import "./Detail.css";
+//FontAwesomeIcon
 import styled, { keyframes } from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+
+//Route
+import { Route, Link } from "react-router-dom";
 function App() {
   return (
     <div className="App">
-      <Main />
+      <header>
+        <h1>중국어 단어장</h1>
+      </header>
+      <Route exact path="/">
+        <Main />
+      </Route>
+      <Route path="/detail">
+        <Detail />
+      </Route>
     </div>
   );
 }

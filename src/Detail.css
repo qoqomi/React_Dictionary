@@ -1,0 +1,14 @@
+.Main_box{
+    max-width: 350px;
+        min-height: 80vh;
+        background-color: #fff;
+        padding: 16px;
+        margin: 20px auto;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+    
+}
+h2{
+    font-size: 18px;
+    text-align: center;
+}
