@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+
 const Detail = () => {
   const cat = useParams();
   const history = useHistory();
@@ -10,9 +11,31 @@ const Detail = () => {
       <div className="Main_box">
         <h2>단어 추가하기</h2>
         <from>
-          <div>
-            <label>단어</label>
-            <input></input>
+          <div className="Main_box__sub">
+            <label for="input-word">단어</label>
+            <input
+              value=""
+              required
+              id="input-word"
+              type="text"
+              maxLength="8"
+            />
+          </div>
+          <div className="Main_box__sub">
+            <label for="input-word">병음</label>
+            <input required id="input" type="text" maxLength="8" />
+          </div>
+          <div className="Main_box__sub">
+            <label for="input-word">의미</label>
+            <input required id="input-word" type="text" maxLength="8" />
+          </div>
+          <div className="Main_box__sub">
+            <label for="input-word">예문</label>
+            <input required id="input-word" type="text" maxLength="8" />
+          </div>
+          <div className="Main_box__sub">
+            <label for="input-word">해석</label>
+            <input required id="input-word" type="text" maxLength="8" />
           </div>
         </from>
       </div>
