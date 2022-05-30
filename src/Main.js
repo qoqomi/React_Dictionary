@@ -12,7 +12,13 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { Container } from "react-bootstrap";
 
+//redux 데이터 가져오기
+import { useSelector } from "react-redux";
+
 const Main = (props) => {
+  const word_data = useSelector((state) => state.dictionary.list);
+  console.log(word_data);
+
   return (
     <div>
       <div className="card_Main">
@@ -29,13 +35,12 @@ const Main = (props) => {
             </button>
           </div>
           <div>
-            <h4>한자</h4>
-            <span style={{ fontSize: "14px" }}>[성조]</span>
+            <h4>{}</h4>
+            <span style={{ fontSize: "14px" }}></span>
           </div>
 
-          <p style={{ fontSize: "16px", margin: "0" }}>뜻</p>
-          <div style={{ fontSize: "14px", color: "blue" }}>예제한자</div>
-          <div style={{ fontSize: "14px", color: "blue" }}>뜻</div>
+          <p style={{ fontSize: "16px", margin: "0" }}>{}</p>
+          <div style={{ fontSize: "14px", color: "blue" }}>{}</div>
         </article>
         <article className="card_Box">
           <div className="card_Box_Btn">
@@ -50,13 +55,12 @@ const Main = (props) => {
             </button>
           </div>
           <div>
-            <h4>한자</h4>
-            <span style={{ fontSize: "14px" }}>[성조]</span>
+            <h4>{}</h4>
+            <span style={{ fontSize: "14px" }}></span>
           </div>
 
-          <p style={{ fontSize: "16px", margin: "0" }}>뜻</p>
-          <div style={{ fontSize: "14px", color: "blue" }}>예제한자</div>
-          <div style={{ fontSize: "14px", color: "blue" }}>뜻</div>
+          <p style={{ fontSize: "16px", margin: "0" }}>{}</p>
+          <div style={{ fontSize: "14px", color: "blue" }}>{}</div>
         </article>
         <article className="card_Box">
           <div className="card_Box_Btn">
@@ -71,36 +75,72 @@ const Main = (props) => {
             </button>
           </div>
           <div>
-            <h4>한자</h4>
-            <span style={{ fontSize: "14px" }}>[성조]</span>
+            <h4>{}</h4>
+            <span style={{ fontSize: "14px" }}></span>
           </div>
 
-          <p style={{ fontSize: "16px", margin: "0" }}>뜻</p>
-          <div style={{ fontSize: "14px", color: "blue" }}>예제한자</div>
-          <div style={{ fontSize: "14px", color: "blue" }}>뜻</div>
+          <p style={{ fontSize: "16px", margin: "0" }}>{}</p>
+          <div style={{ fontSize: "14px", color: "blue" }}>{}</div>
         </article>
-        <article className="card_Box">
-          <div className="card_Box_Btn">
-            <button style={{ marginLeft: "10px" }}>
-              <FontAwesomeIcon icon={faCheck} />
-            </button>
-            <a>
-              <FontAwesomeIcon icon={faPenToSquare} />
-            </a>
-            <button>
-              <FontAwesomeIcon icon={faXmark} />
-            </button>
-          </div>
-          <div>
-            <h4>한자</h4>
-            <span style={{ fontSize: "14px" }}>[성조]</span>
-          </div>
 
-          <p style={{ fontSize: "16px", margin: "0" }}>뜻</p>
-          <div style={{ fontSize: "14px", color: "blue" }}>예제한자</div>
-          <div style={{ fontSize: "14px", color: "blue" }}>뜻</div>
-        </article>
+        {/* {word_data.map((el, i) => {
+          return (
+            <article className="card_Box" key={i}>
+              <div className="card_Box_Btn">
+                <button style={{ marginLeft: "10px" }}>
+                  <FontAwesomeIcon icon={faCheck} />
+                </button>
+                <a>
+                  <FontAwesomeIcon icon={faPenToSquare} />
+                </a>
+                <button>
+                  <FontAwesomeIcon icon={faXmark} />
+                </button>
+              </div>
+              <div>
+                <h4>{word_data[i].word}</h4>
+                <span style={{ fontSize: "14px" }}>{el.sang}</span>
+              </div>
+
+              <p style={{ fontSize: "16px", margin: "0" }}>{el.description}</p>
+              <div style={{ fontSize: "14px", color: "blue" }}>
+                {el.sampleword}
+              </div>
+            </article>
+            
+          );
+        })} */}
+
+        {/* {word_data.map((el, i) => {
+          return (
+            <article className="card_Box" key={i}>
+              <div className="card_Box_Btn">
+                <button style={{ marginLeft: "10px" }}>
+                  <FontAwesomeIcon icon={faCheck} />
+                </button>
+                <a>
+                  <FontAwesomeIcon icon={faPenToSquare} />
+                </a>
+                <button>
+                  <FontAwesomeIcon icon={faXmark} />
+                </button>
+              </div>
+              <div>
+                <h4>{word_data[i].word}</h4>
+                <span style={{ fontSize: "14px" }}>{el.sang}</span>
+              </div>
+
+              <p style={{ fontSize: "16px", margin: "0" }}>{el.description}</p>
+              <div style={{ fontSize: "14px", color: "blue" }}>
+                {el.sampleword}
+              </div>
+            </article>
+            
+          );
+        })} */}
       </div>
+
+      <button> 버튼입니다</button>
     </div>
   );
 };

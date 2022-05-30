@@ -5,11 +5,12 @@ import { useHistory } from "react-router-dom";
 const Detail = () => {
   const cat = useParams();
   const history = useHistory();
-  console.log(cat);
+
   return (
     <div>
+      {/* 카드 그려주기 */}
       <div className="Main_box">
-        <h2>단어 추가하기</h2>
+        {/* <h2>단어 추가하기</h2>
         <from>
           <div className="Main_box__sub">
             <label for="input-word">단어</label>
@@ -35,17 +36,9 @@ const Detail = () => {
           </div>
           <div className="Main_box__sub">
             <label for="input-word">해석</label>
-            <input required id="input-word" type="text" maxLength="8" />
+            <input required id="input-word" type="text" maxLength="8" /> */}
           </div>
         </from>
-      </div>
-
-      <div
-        onClick={() => {
-          history.push("/");
-        }}
-      >
-        강아지화면
       </div>
     </div>
   );

@@ -14,23 +14,6 @@
         vertical-align: baseline;
 }
 
-header {
-  
-    width: 100%;
-    padding: 1rem;
-    color: black;
-    background: white;
-    border-bottom: 4px solid rgba(200, 200, 200, .5);
-    display: flex;
-    align-items: center;
-}
-
-header h1{
-    color: black;
-    font-family: "NanumSquareRoundExtraBold";
-    font-size: 25px;
-    margin: auto;
-}
 
 
 /* Main */

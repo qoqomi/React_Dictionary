@@ -1,27 +1,5 @@
-.Main_box{
-        max-width: 400px;
-        min-height: 80vh;
-        background-color: #fff;
-        padding: 0;
-        margin: auto;
-        font:inherit;
-        margin: 0px 30px;
-        vertical-align: baseline;
-        border: 1px solid #ddd;
-    
-}
-h2{
-    font-size: 18px;
-    text-align: center;
-    margin:20px 0;
-    color:green;
-    font-family: "NanumSquareRoundExtraBold";
-    
-}
-.Mian_box__sub{
-    
-    margin: auto;
-}
+
+
 .input-word{
     margin: 1em;
 }
