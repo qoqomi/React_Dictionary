@@ -22,68 +22,7 @@ const Main = (props) => {
   return (
     <div>
       <div className="card_Main">
-        <article className="card_Box">
-          <div className="card_Box_Btn">
-            <button style={{ marginLeft: "10px" }}>
-              <FontAwesomeIcon icon={faCheck} />
-            </button>
-            <a>
-              <FontAwesomeIcon icon={faPenToSquare} />
-            </a>
-            <button>
-              <FontAwesomeIcon icon={faXmark} />
-            </button>
-          </div>
-          <div>
-            <h4>{}</h4>
-            <span style={{ fontSize: "14px" }}></span>
-          </div>
-
-          <p style={{ fontSize: "16px", margin: "0" }}>{}</p>
-          <div style={{ fontSize: "14px", color: "blue" }}>{}</div>
-        </article>
-        <article className="card_Box">
-          <div className="card_Box_Btn">
-            <button style={{ marginLeft: "10px" }}>
-              <FontAwesomeIcon icon={faCheck} />
-            </button>
-            <a>
-              <FontAwesomeIcon icon={faPenToSquare} />
-            </a>
-            <button>
-              <FontAwesomeIcon icon={faXmark} />
-            </button>
-          </div>
-          <div>
-            <h4>{}</h4>
-            <span style={{ fontSize: "14px" }}></span>
-          </div>
-
-          <p style={{ fontSize: "16px", margin: "0" }}>{}</p>
-          <div style={{ fontSize: "14px", color: "blue" }}>{}</div>
-        </article>
-        <article className="card_Box">
-          <div className="card_Box_Btn">
-            <button style={{ marginLeft: "10px" }}>
-              <FontAwesomeIcon icon={faCheck} />
-            </button>
-            <a>
-              <FontAwesomeIcon icon={faPenToSquare} />
-            </a>
-            <button>
-              <FontAwesomeIcon icon={faXmark} />
-            </button>
-          </div>
-          <div>
-            <h4>{}</h4>
-            <span style={{ fontSize: "14px" }}></span>
-          </div>
-
-          <p style={{ fontSize: "16px", margin: "0" }}>{}</p>
-          <div style={{ fontSize: "14px", color: "blue" }}>{}</div>
-        </article>
-
-        {/* {word_data.map((el, i) => {
+        {word_data.map((el, i) => {
           return (
             <article className="card_Box" key={i}>
               <div className="card_Box_Btn">
@@ -107,9 +46,8 @@ const Main = (props) => {
                 {el.sampleword}
               </div>
             </article>
-            
           );
-        })} */}
+        })}
 
         {/* {word_data.map((el, i) => {
           return (

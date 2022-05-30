@@ -18,8 +18,9 @@ const Add = (props) => {
 
   const addNewWord = () => {
     //crateCard를 사용
+    const word = { word: inputWord };
 
-    console.log(inputWord.current.value);
+    console.log(word);
   };
 
   return (
