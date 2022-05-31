@@ -30,11 +30,13 @@ function App() {
   return (
     <div className="App">
       <Header>
-        <H1>중국어 단어장</H1>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <H1>중국어 단어장</H1>
+        </Link>
       </Header>
 
       <Route path="/" component={Main} exact />
-      <Route path="/add" component={Add} exact word="word" />
+      <Route path="/add" component={Add} exact />
     </div>
   );
 }
@@ -47,12 +49,14 @@ const Header = styled.header`
   border-bottom: 4px solid rgba(200, 200, 200, 0.5);
   display: flex;
   align-items: center;
+  justify-content: center;
 `;
 
 const H1 = styled.h1`
   color: black;
   font-family: "NanumSquareRoundExtraBold";
-  font-size: 25px;
+  font-size: 30px;
   margin: auto;
+  font-weight: 600;
 `;
 export default App;

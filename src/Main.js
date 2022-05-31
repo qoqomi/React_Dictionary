@@ -4,20 +4,25 @@ import React from "react";
 import "./style.css";
 import "./CardBox.css";
 import styled, { keyframes } from "styled-components";
+//주소이동
+import { useHistory, Link } from "react-router-dom";
 
 //fontAwesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Container } from "react-bootstrap";
-
-//redux 데이터 가져오기
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 const Main = (props) => {
+  const index = useParams();
+  const history = useHistory();
+
+  console.log(index);
   const word_data = useSelector((state) => state.dictionary.list);
-  console.log(word_data);
 
   return (
     <div>
@@ -38,63 +43,46 @@ const Main = (props) => {
               </div>
               <div>
                 <h4>{word_data[i].word}</h4>
-                <span style={{ fontSize: "14px" }}>{el.sang}</span>
+                <span style={{ fontSize: "14px" }}>
+                  {word_data[i].description}
+                </span>
               </div>
 
-              <p style={{ fontSize: "16px", margin: "0" }}>{el.description}</p>
+              <p style={{ fontSize: "16px", margin: "0" }}>
+                {word_data[i].exmple}
+              </p>
               <div style={{ fontSize: "14px", color: "blue" }}>
-                {el.sampleword}
+                {el.addmemo}
               </div>
             </article>
           );
         })}
-
-        {/* {word_data.map((el, i) => {
-          return (
-            <article className="card_Box" key={i}>
-              <div className="card_Box_Btn">
-                <button style={{ marginLeft: "10px" }}>
-                  <FontAwesomeIcon icon={faCheck} />
-                </button>
-                <a>
-                  <FontAwesomeIcon icon={faPenToSquare} />
-                </a>
-                <button>
-                  <FontAwesomeIcon icon={faXmark} />
-                </button>
-              </div>
-              <div>
-                <h4>{word_data[i].word}</h4>
-                <span style={{ fontSize: "14px" }}>{el.sang}</span>
-              </div>
-
-              <p style={{ fontSize: "16px", margin: "0" }}>{el.description}</p>
-              <div style={{ fontSize: "14px", color: "blue" }}>
-                {el.sampleword}
-              </div>
-            </article>
-            
-          );
-        })} */}
       </div>
-
-      <button> 버튼입니다</button>
+      <AddBtn>
+        <Link to="/add">
+          <FontAwesomeIcon icon={faPlus} size="2x" style={{ color: "white" }} />
+        </Link>
+      </AddBtn>
     </div>
   );
 };
 
-// const ListStyle = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   height: 100%;
-//   overflow-x: hidden;
-//   overflow-y: auto;
-// `;
-
-// const ItemStyle = styled.div`
-//   padding: 16px;
-//   margin: 8px;
-//   background-color: aliceblue;
-// `;
-
 export default Main;
+
+const AddBtn = styled.div`
+  background-color: rgba(200, 200, 200, 0.5);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: rgb(60 64 67 / 30%) 0px 1px 2px 0px,
+    rgb(60 64 67 / 15%) 0px 2px 6px 2px;
+  //아이콘위치
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  //box위치
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+`;
