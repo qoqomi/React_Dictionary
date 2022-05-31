@@ -1,5 +1,5 @@
 // 리액트 패키지를 불러옵니다.
-import React from "react";
+import React, { useState } from "react";
 //css
 import "./style.css";
 import "./CardBox.css";
@@ -20,25 +20,40 @@ import { useParams } from "react-router-dom";
 const Main = (props) => {
   const index = useParams();
   const history = useHistory();
-
-  console.log(index);
+  const [toggle, setToggle] = useState(false);
   const word_data = useSelector((state) => state.dictionary.list);
 
+  function handleToggle() {
+    setToggle((current) => !current);
+    return;
+  }
   return (
     <div>
       <div className="card_Main">
         {word_data.map((el, i) => {
           return (
-            <article className="card_Box" key={i}>
+            <article
+              className="card_Box"
+              key={i}
+              style={{
+                backgroundColor: toggle[index] ? "#bcbcbc" : "",
+              }}
+            >
               <div className="card_Box_Btn">
                 <button style={{ marginLeft: "10px" }}>
-                  <FontAwesomeIcon icon={faCheck} />
+                  <FontAwesomeIcon icon={faCheck} onClick={handleToggle} />
                 </button>
                 <a>
                   <FontAwesomeIcon icon={faPenToSquare} />
                 </a>
                 <button>
-                  <FontAwesomeIcon icon={faXmark} />
+                  <FontAwesomeIcon
+                    icon={faXmark}
+                    onClick={() => {
+                      console.log("삭제하기버튼을눌렀어");
+                      alert("삭제됨");
+                    }}
+                  />
                 </button>
               </div>
               <div>
@@ -70,7 +85,7 @@ const Main = (props) => {
 export default Main;
 
 const AddBtn = styled.div`
-  background-color: rgba(200, 200, 200, 0.5);
+  background-color: #bcbcbc;
   width: 50px;
   height: 50px;
   border-radius: 50%;

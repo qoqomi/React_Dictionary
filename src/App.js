@@ -1,17 +1,18 @@
 import React from "react";
-//새로운 창들
+//new browser
 import Main from "./Main";
 import Add from "./Add";
-import background from "./img/paper.jpeg";
 //css
 import "./App.css";
 import "./CardBox.css";
 import "./Detail.css";
-//FontAwesomeIcon
-import styled, { keyframes } from "styled-components";
+//style component
+import styled from "styled-components";
 
 //Route
 import { Route, Link } from "react-router-dom";
+//firebase
+import { db } from "./firebase";
 
 function App() {
   const [list, setList] = React.useState([
@@ -21,11 +22,9 @@ function App() {
   ]);
   const text = React.useRef(null);
 
-  const addBucketList = () => {
-    // 스프레드 문법! 기억하고 계신가요? :)
-    // 원본 배열 list에 새로운 요소를 추가해주었습니다.
-    setList([...list, text.current.value]);
-  };
+  React.useEffect(() => {
+    console.log(db);
+  }, []);
 
   return (
     <div className="App">
