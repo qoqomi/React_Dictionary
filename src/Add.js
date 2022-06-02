@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { createCard } from "./redux/modules/dictionary";
 //redex 데이터 가져오기
 import { useSelector } from "react-redux";
+
 const Add = (props) => {
   const history = useHistory();
   const index = useParams();
@@ -31,9 +32,19 @@ const Add = (props) => {
       exmple: exmples.current.value,
       addmemo: memo.current.value,
     };
-    console.log(myCard);
-    dispatch(createCard(myCard));
+    if (
+      words.current.value === "" ||
+      descriptions.current.value === "" ||
+      exmples.current.value === "" ||
+      memo.current.value === ""
+    ) {
+      alert("값을 모두 입력해주세요");
+    } else {
+      console.log(myCard);
+      dispatch(createCard(myCard));
+    }
   };
+  const add = () => {};
 
   return (
     <div>

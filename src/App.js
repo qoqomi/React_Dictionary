@@ -15,13 +15,6 @@ import { Route, Link } from "react-router-dom";
 import { db } from "./firebase";
 
 function App() {
-  const [list, setList] = React.useState([
-    "영화관 가기",
-    "매일 책읽기",
-    "수영 배우기",
-  ]);
-  const text = React.useRef(null);
-
   React.useEffect(() => {
     console.log(db);
   }, []);
@@ -49,6 +42,12 @@ const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0%;
+  z-index: 1;
 `;
 
 const H1 = styled.h1`

@@ -1,6 +1,4 @@
-
-
-.card_Main{
+.card_Main {
     width: 90%;
     max-width: 1240px;
     margin: auto;
@@ -9,23 +7,20 @@
     grid-auto-rows: 150px;
     /* grid-auto-columns: (3,400px); */
     grid-template-columns: repeat(3, 1fr);
-    padding: 50px 0px;
+    padding: 100px 0px;
 
     /* justify-items: stretch; */
     /* align-items: stretch; */
     justify-content: center;
     flex-flow: wrap;
-    
     grid-gap: 20px;
-       
 
-    
 }
 
 @media only screen and (max-width: 1200px) {
     .card_Main {
-        
-        grid-template-columns: repeat(2,1fr);
+
+        grid-template-columns: repeat(2, 1fr);
 
     }
 }
@@ -56,15 +51,16 @@
     background-color: rgba(255, 255, 255, 0.4);
     padding: 20px;
     border-radius: 20px;
-   
+
 
 
     font-family: "NanumSquareRoundExtraBold";
     transition: box-shadow 300ms ease-in-out;
 
 }
+
 .card_Box:hover {
-            box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 }
 
 
@@ -87,11 +83,11 @@ article h4 {
     margin: 0px 5px 0px 0px;
 }
 
-.card_Box_Btn{
-    position: absolute; 
+.card_Box_Btn {
+    position: absolute;
     right: 15px;
     display: flex;
     align-items: center;
-    
-       
+
+
 }

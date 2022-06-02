@@ -13,35 +13,31 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { Container } from "react-bootstrap";
-import { useSelector } from "react-redux";
+//redux
+import { useSelector, useDispatch } from "react-redux";
+import { deleteCard, modifyCard } from "./redux/modules/dictionary";
 import { useParams } from "react-router-dom";
 
 const Main = (props) => {
   const index = useParams();
   const history = useHistory();
-  const [toggle, setToggle] = useState(false);
   const word_data = useSelector((state) => state.dictionary.list);
+  const dispatch = useDispatch();
 
-  function handleToggle() {
-    setToggle((current) => !current);
-    return;
-  }
   return (
     <div>
       <div className="card_Main">
         {word_data.map((el, i) => {
           return (
-            <article
-              className="card_Box"
-              key={i}
-              style={{
-                backgroundColor: toggle[index] ? "#bcbcbc" : "",
-              }}
-            >
+            <article className="card_Box" key={i}>
               <div className="card_Box_Btn">
                 <button style={{ marginLeft: "10px" }}>
-                  <FontAwesomeIcon icon={faCheck} onClick={handleToggle} />
+                  <FontAwesomeIcon
+                    icon={faCheck}
+                    onClick={() => {
+                      dispatch(modifyCard(i));
+                    }}
+                  />
                 </button>
                 <a>
                   <FontAwesomeIcon icon={faPenToSquare} />
@@ -49,10 +45,7 @@ const Main = (props) => {
                 <button>
                   <FontAwesomeIcon
                     icon={faXmark}
-                    onClick={() => {
-                      console.log("삭제하기버튼을눌렀어");
-                      alert("삭제됨");
-                    }}
+                    onClick={() => dispatch(deleteCard(i))}
                   />
                 </button>
               </div>
