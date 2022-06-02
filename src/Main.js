@@ -15,15 +15,20 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 //redux
 import { useSelector, useDispatch } from "react-redux";
-import { deleteCard, modifyCard } from "./redux/modules/dictionary";
+import {
+  deleteCard,
+  modifyCard,
+  deleteCardFB,
+} from "./redux/modules/dictionary";
 import { useParams } from "react-router-dom";
+//middlewares
 
 const Main = (props) => {
   const index = useParams();
   const history = useHistory();
   const word_data = useSelector((state) => state.dictionary.list);
   const dispatch = useDispatch();
-
+  console.log(word_data);
   return (
     <div>
       <div className="card_Main">
@@ -32,12 +37,7 @@ const Main = (props) => {
             <article className="card_Box" key={i}>
               <div className="card_Box_Btn">
                 <button style={{ marginLeft: "10px" }}>
-                  <FontAwesomeIcon
-                    icon={faCheck}
-                    onClick={() => {
-                      dispatch(modifyCard(i));
-                    }}
-                  />
+                  <FontAwesomeIcon icon={faCheck} />
                 </button>
                 <a>
                   <FontAwesomeIcon icon={faPenToSquare} />
@@ -45,20 +45,16 @@ const Main = (props) => {
                 <button>
                   <FontAwesomeIcon
                     icon={faXmark}
-                    onClick={() => dispatch(deleteCard(i))}
+                    onClick={() => dispatch(deleteCardFB(el.id))}
                   />
                 </button>
               </div>
               <div>
-                <h4>{word_data[i].word}</h4>
-                <span style={{ fontSize: "14px" }}>
-                  {word_data[i].description}
-                </span>
+                <h4>{el.word}</h4>
+                <span style={{ fontSize: "14px" }}>{el.description}</span>
               </div>
 
-              <p style={{ fontSize: "16px", margin: "0" }}>
-                {word_data[i].exmple}
-              </p>
+              <p style={{ fontSize: "16px", margin: "0" }}>{el.exmple}</p>
               <div style={{ fontSize: "14px", color: "blue" }}>
                 {el.addmemo}
               </div>

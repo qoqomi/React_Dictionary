@@ -11,13 +11,16 @@ import styled from "styled-components";
 
 //Route
 import { Route, Link } from "react-router-dom";
-//firebase
-import { db } from "./firebase";
+
+import { loadCardFB } from "./redux/modules/dictionary";
+import { useDispatch } from "react-redux";
 
 function App() {
+  const dispatch = useDispatch();
+
   React.useEffect(() => {
-    console.log(db);
-  }, []);
+    dispatch(loadCardFB());
+  }, [dispatch]);
 
   return (
     <div className="App">

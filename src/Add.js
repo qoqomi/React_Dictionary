@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 
 //파라미터
 import { useHistory, useParams } from "react-router-dom";
-import { useState } from "react";
 import styled from "styled-components";
 //수정해주는 데이터 !
 import { useDispatch } from "react-redux";
@@ -10,21 +9,21 @@ import { useDispatch } from "react-redux";
 import { createCard } from "./redux/modules/dictionary";
 //redex 데이터 가져오기
 import { useSelector } from "react-redux";
+//firebase
+import { addCardFB } from "./redux/modules/dictionary";
 
 const Add = (props) => {
   const history = useHistory();
-  const index = useParams();
   const dispatch = useDispatch();
 
   const word_data = useSelector((state) => state.dictionary.list);
-  console.log(word_data);
 
   //리액트요소(input) DOM으로 가져오기 작업
   const words = React.useRef(null);
   const descriptions = React.useRef(null);
   const exmples = React.useRef(null);
   const memo = React.useRef(null);
-  //onclick시 데이터를 create해주는 함수 저장
+
   const addNewWord = () => {
     const myCard = {
       word: words.current.value,
@@ -40,11 +39,17 @@ const Add = (props) => {
     ) {
       alert("값을 모두 입력해주세요");
     } else {
-      console.log(myCard);
-      dispatch(createCard(myCard));
+      // dispatch(createCard(myCard));
+      dispatch(
+        addCardFB({
+          word: words.current.value,
+          description: descriptions.current.value,
+          exmple: exmples.current.value,
+          addmemo: memo.current.value,
+        })
+      );
     }
   };
-  const add = () => {};
 
   return (
     <div>

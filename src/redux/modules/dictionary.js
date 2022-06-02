@@ -1,15 +1,28 @@
 // dictionary.js
-
-import { faL } from "@fortawesome/free-solid-svg-icons";
-
+import { db } from "../../firebase";
+import {
+  collection,
+  getDoc,
+  getDocs,
+  addDoc,
+  updateDoc,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
 //Actions
 //creat: 새로생성
+const LOAD = "dictionary/LOAD";
 const CREATE = "dictionary/CREATE";
 const DELETE = "dictionary/DELETE";
 const MODIFY = "dictionary/MODIFY";
 //초기값
 
 // Action Creators(새로운 card data)
+export function loadCard(cardtotal) {
+  //파이어스토어 모든데이터
+  return { type: LOAD, cardtotal };
+}
+
 export function createCard(card) {
   return { type: CREATE, card: card };
 }
@@ -18,65 +31,65 @@ export function deleteCard(card_index) {
   return { type: DELETE, card_index };
 }
 
-export function modifyCard(card_index, edit_word) {
-  console.log("바꿀거야");
-  return { type: MODIFY, card_index, edit_word };
-}
-// side effects, only as applicable
-// e.g. thunks, epics, etc
-// export function getWidget() {
-//   return (dispatch) =>
-//     get("/widget").then((widget) => dispatch(updateWidget(widget)));
-// }
+//middlewares
+export const loadCardFB = () => {
+  return async function (dispatch) {
+    const card_data = await getDocs(collection(db, "dictionaryAdd"));
+
+    let card_list = [];
+
+    card_data.forEach((doc) => {
+      card_list.push({ id: doc.id, ...doc.data() });
+    });
+
+    dispatch(loadCard(card_list));
+  };
+};
+
+export const addCardFB = (addcard) => {
+  return async function (dispatch) {
+    const docRef = await addDoc(collection(db, "dictionaryAdd"), addcard);
+    const _card = await getDoc(docRef);
+    const bucket = { id: _card.id, ..._card.data() };
+    dispatch(createCard(bucket));
+  };
+};
+
+export const deleteCardFB = (card_id) => {
+  return async function (dispatch, getState) {
+    if (!card_id) {
+      window.alert("아이디가 없어요");
+      return;
+    }
+    const docRef = doc(db, "dictionaryAdd", card_id);
+    await deleteDoc(docRef);
+
+    const _card_list = getState().dictionary.list;
+    // findIndex로 몇 번째에 있는 지 찾기!
+    const card_index = _card_list.findIndex((b) => {
+      // getState 해서 index 값들 중에 받아 온 index 값이랑 같은 index 뽑아내기
+      return b.id === card_id;
+    });
+    dispatch(deleteCard(card_index));
+  };
+};
+
 const initialState = {
   list: [
-    {
-      word: "1입니다",
-      description: "성조입니다.",
-      exmple: "뜻입니다.",
-      addmemo: "메모입니다",
-    },
-    {
-      word: "2입니다",
-      description: "성조입니다.",
-      exmple: "뜻입니다.",
-      addmemo: "메모입니다",
-    },
-    {
-      word: "3입니다",
-      description: "성조입니다.",
-      exmple: "뜻입니다.",
-      addmemo: "메모입니다",
-    },
-    {
-      word: "4입니다",
-      description: "성조입니다.",
-      exmple: "뜻입니다.",
-      addmemo: "메모입니다",
-    },
-    {
-      word: "5입니다",
-      description: "성조입니다.",
-      exmple: "뜻입니다.",
-      addmemo: "메모입니다",
-    },
-    {
-      word: "6입니다",
-      description: "성조입니다.",
-      exmple: "뜻입니다.",
-      addmemo: "메모입니다",
-    },
-    {
-      word: "7입니다",
-      description: "성조입니다.",
-      exmple: "뜻입니다.",
-      addmemo: "메모입니다",
-    },
+    // {
+    //   word: "1입니다",
+    //   description: "성조입니다.",
+    //   exmple: "뜻입니다.",
+    //   addmemo: "메모입니다",
+    // },
   ],
 };
 // Reducer
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
+    case "dictionary/LOAD": {
+      return { list: action.cardtotal };
+    }
     case "dictionary/CREATE": {
       const new_word_list = [...state.list, action.card];
       return { list: new_word_list };
