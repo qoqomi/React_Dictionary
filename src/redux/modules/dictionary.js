@@ -1,4 +1,3 @@
-// dictionary.js
 import { db } from "../../firebase";
 import {
   collection,
@@ -14,7 +13,7 @@ import {
 const LOAD = "dictionary/LOAD";
 const CREATE = "dictionary/CREATE";
 const DELETE = "dictionary/DELETE";
-const MODIFY = "dictionary/MODIFY";
+const LOADED = "dictionary/LOADED";
 //초기값
 
 // Action Creators(새로운 card data)
@@ -29,6 +28,10 @@ export function createCard(card) {
 
 export function deleteCard(card_index) {
   return { type: DELETE, card_index };
+}
+//스피너
+export function isLoaded(loaded) {
+  return { type: LOADED, loaded };
 }
 
 //middlewares
@@ -48,6 +51,7 @@ export const loadCardFB = () => {
 
 export const addCardFB = (addcard) => {
   return async function (dispatch) {
+    dispatch(isLoaded(false));
     const docRef = await addDoc(collection(db, "dictionaryAdd"), addcard);
     const _card = await getDoc(docRef);
     const bucket = { id: _card.id, ..._card.data() };
@@ -75,6 +79,7 @@ export const deleteCardFB = (card_id) => {
 };
 
 const initialState = {
+  is_loaded: false,
   list: [
     // {
     //   word: "1입니다",
@@ -88,22 +93,23 @@ const initialState = {
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case "dictionary/LOAD": {
-      return { list: action.cardtotal };
+      return { list: action.cardtotal, is_loaded: true };
     }
     case "dictionary/CREATE": {
       const new_word_list = [...state.list, action.card];
-      return { list: new_word_list };
+      return { ...state, list: new_word_list, is_loaded: true };
     }
     case "dictionary/DELETE": {
       const new_word_list = state.list.filter((el, idx) => {
         console.log(action.card_index, idx);
         return action.card_index != idx;
       });
-      return { list: new_word_list };
+      return { ...state, list: new_word_list };
     }
-    case "dictionary/MODIFY": {
-      return state;
+    case "dictionary/LOADED": {
+      return { ...state, is_loaded: action.loaded };
     }
+
     default:
       return state;
   }

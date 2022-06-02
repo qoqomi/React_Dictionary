@@ -14,7 +14,7 @@
     justify-content: center;
     flex-flow: wrap;
     grid-gap: 20px;
-
+    z-index: 1;
 }
 
 @media only screen and (max-width: 1200px) {

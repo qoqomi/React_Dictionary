@@ -6,6 +6,7 @@ import Add from "./Add";
 import "./App.css";
 import "./CardBox.css";
 import "./Detail.css";
+import Spinner from "./Spinner";
 //style component
 import styled from "styled-components";
 
@@ -13,10 +14,11 @@ import styled from "styled-components";
 import { Route, Link } from "react-router-dom";
 
 import { loadCardFB } from "./redux/modules/dictionary";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
   const dispatch = useDispatch();
+  const is_loaded = useSelector((state) => state.dictionary.is_loaded);
 
   React.useEffect(() => {
     dispatch(loadCardFB());
@@ -32,6 +34,7 @@ function App() {
 
       <Route path="/" component={Main} exact />
       <Route path="/add" component={Add} exact />
+      {!is_loaded && <Spinner />}
     </div>
   );
 }
@@ -41,16 +44,15 @@ const Header = styled.header`
   padding: 1rem;
   color: black;
   background: white;
-  border-bottom: 4px solid rgba(200, 200, 200, 0.5);
+  border-bottom: 4px solid rgba(200, 200, 200);
   display: flex;
   align-items: center;
   justify-content: center;
-
   position: fixed;
   top: 0;
   left: 0;
   right: 0%;
-  z-index: 1;
+  z-index: 2;
 `;
 
 const H1 = styled.h1`

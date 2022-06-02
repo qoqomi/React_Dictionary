@@ -84,7 +84,6 @@ const AddBtn = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
   //box위치
   position: fixed;
   bottom: 10px;

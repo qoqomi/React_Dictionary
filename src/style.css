@@ -1,14 +1,14 @@
 
 /* nav */
 .App{
-    background-image:linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),
+    /* background-image:linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),
         url("./img/paper.jpeg") ;
         background-position: center;
         background-size: 100%;
-        background-repeat: repeat;
+        background-repeat: no-repeat;
         background-size: 100% 100%;
         background-attachment: scroll;
-        object-fit: cover;
+        object-fit: cover; */
         
         width: 100vw;
         height: 100vh;

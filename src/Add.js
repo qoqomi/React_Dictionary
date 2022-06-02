@@ -10,7 +10,7 @@ import { createCard } from "./redux/modules/dictionary";
 //redex 데이터 가져오기
 import { useSelector } from "react-redux";
 //firebase
-import { addCardFB } from "./redux/modules/dictionary";
+import { addCardFB, isLoaded } from "./redux/modules/dictionary";
 
 const Add = (props) => {
   const history = useHistory();
@@ -25,12 +25,6 @@ const Add = (props) => {
   const memo = React.useRef(null);
 
   const addNewWord = () => {
-    const myCard = {
-      word: words.current.value,
-      description: descriptions.current.value,
-      exmple: exmples.current.value,
-      addmemo: memo.current.value,
-    };
     if (
       words.current.value === "" ||
       descriptions.current.value === "" ||
@@ -39,7 +33,7 @@ const Add = (props) => {
     ) {
       alert("값을 모두 입력해주세요");
     } else {
-      // dispatch(createCard(myCard));
+      // dispatch(createCard(myCard));변수를 선언했을 시 페이지가 넘어가지 않음
       dispatch(
         addCardFB({
           word: words.current.value,
@@ -48,6 +42,7 @@ const Add = (props) => {
           addmemo: memo.current.value,
         })
       );
+      dispatch(isLoaded());
     }
   };
 
@@ -97,7 +92,6 @@ const H2 = styled.h2`
   text-align: center;
   margin: 20px 0px;
   font-size: 18px;
-
   font-family: "NanumSquareRoundExtraBold";
   font-weight: bold;
 `;
@@ -141,9 +135,7 @@ const Input = styled.input`
   height: 20px;
   &:focus {
     outline: none;
-
     height: 50px;
-
     box-shadow: 0 4px 4px -4px black;
   }
 `;
